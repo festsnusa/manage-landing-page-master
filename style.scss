@@ -1,0 +1,538 @@
+$red: hsl(12, 88%, 59%);
+$blue: hsl(228, 39%, 23%);
+$blueGray: hsl(227, 12%, 61%);
+$blueDark: hsl(233, 12%, 13%);
+$redPale: hsl(13, 100%, 96%);
+$grayLight: hsl(0, 0%, 98%);
+
+@mixin fontFace($fontType, $fontWeight) {
+
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: $fontWeight;
+  src: url('./fonts/be-vietnam-pro-v10-latin-#{$fontType}.eot');
+  /* IE9 Compat Modes */
+  src: local(''),
+  url('./fonts/be-vietnam-pro-v10-latin-#{$fontType}.eot?#iefix') format('embedded-opentype'),
+  /* IE6-IE8 */
+  url('./fonts/be-vietnam-pro-v10-latin-#{$fontType}.woff2') format('woff2'),
+  /* Super Modern Browsers */
+  url('./fonts/be-vietnam-pro-v10-latin-#{$fontType}.woff') format('woff'),
+  /* Modern Browsers */
+  url('./fonts/be-vietnam-pro-v10-latin-#{$fontType}.ttf') format('truetype'),
+  /* Safari, Android, iOS */
+  url('./fonts/be-vietnam-pro-v10-latin-#{$fontType}.svg#BeVietnamPro') format('svg');
+  /* Legacy iOS */
+
+}
+
+@mixin hoverButton {
+  opacity: 0.7;
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* be-vietnam-pro-regular - latin */
+@font-face {
+  @include fontFace('regular', 400);
+}
+
+/* be-vietnam-pro-500 - latin */
+@font-face {
+  @include fontFace('500', 500);
+}
+
+/* be-vietnam-pro-700 - latin */
+@font-face {
+  @include fontFace('700', 700);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  font-size: 1rem;
+  font-family: 'Be Vietnam Pro';
+  background-image: url('./images/bg-tablet-pattern.svg');
+  background-repeat: no-repeat;
+}
+
+.body_fixed {
+  overflow-y: hidden;
+}
+
+.header {
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  align-items: start;
+  position: relative;
+  z-index: 2;
+
+  &__burger {
+    cursor: pointer;
+
+    &_active {
+      position: fixed;
+      right: 0;
+      padding-right: 2rem;
+      content: url('./images/icon-close.svg')
+    }
+
+    &_invisible {
+      display: none;
+    }
+  }
+
+  &__list {
+    display: none;
+
+    &_active {
+      position: relative;
+      display: block;
+      position: fixed;
+      padding: 2rem;
+      top: 7rem;
+      right: 2rem;
+      width: 75%;
+      background-color: #fff;
+      line-height: 2.5rem;
+      text-align: center;
+      z-index: 2;
+      border-radius: 0.625rem;
+      box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    }
+
+    &_flex {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+  }
+
+  &__item {
+
+    a {
+      color: hsl(233, 12%, 13%);
+      font-weight: 600;
+    }
+
+  }
+
+  &__button {
+    display: none;
+  }
+}
+
+.main {
+
+  padding: 2rem;
+  text-align: center;
+
+  &__image {
+    width: 100%;
+  }
+
+  &__title {
+    font-size: 2.5rem;
+  }
+
+  &__subtitle {
+    color: hsl(227, 12%, 61%);
+    line-height: 2rem;
+    padding: 1rem 0 2rem;
+  }
+
+  &__box {
+    padding: 3rem 0 5rem;
+  }
+
+}
+
+.button {
+  cursor: pointer;
+  padding: 1rem 2rem;
+  background-color: $red;
+  border: none;
+  color: #fff;
+  border-radius: 1.875rem;
+  font-family: 'Be Vietnam Pro';
+  box-shadow: 4px 9px 8px 0px rgba($red, 0.2);
+
+  &:hover {
+    @include hoverButton;
+  }
+
+}
+
+.description {
+
+  padding-left: 2rem;
+
+  &__left {
+    text-align: center;
+    padding-right: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  &__title {
+    font-size: 2rem;
+  }
+
+  &__subtitle {
+    color: hsl(227, 12%, 61%);
+    line-height: 2rem;
+    padding: 1rem 0 2rem;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    background-color: #FEF0EB;
+    border-radius: 20px 0 0 20px;
+    gap: 1rem;
+  }
+
+  &__caption {
+    font-weight: 700;
+  }
+
+  &__text {
+    padding-top: 1rem;
+    padding-right: 1.5rem;
+    line-height: 2rem;
+    color: hsl(227, 12%, 61%);
+  }
+
+  &__button {
+    pointer-events: none;
+  }
+}
+
+.feedback {
+  padding: 3rem 0;
+  text-align: center;
+
+  &__title {
+    font-weight: 700;
+    font-size: 2rem;
+  }
+
+  &__item {
+
+    margin: 5rem 0;
+    display: none;
+    background-color: #FAFAFA;
+    position: relative;
+
+    &_active {
+      display: block;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    margin-top: -2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5rem;
+  }
+
+  &__content {
+    padding-top: 5rem;
+  }
+
+  &__name {
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
+  &__text {
+    padding: 2rem;
+    line-height: 2rem;
+    color: hsl(227, 12%, 61%);
+  }
+
+  &__dots {
+    display: none;
+
+    &_active {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      padding-bottom: 3rem;
+    }
+
+  }
+
+  &__dot {
+
+    border-radius: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 1px solid $red;
+    cursor: pointer;
+
+    &_active {
+      background-color: $red;
+    }
+  }
+
+}
+
+.simplify {
+  background-image: url('./images/bg-simplify-section-mobile.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: $red;
+  mix-blend-mode: multiply;
+  text-align: center;
+  height: 40vh;
+  display: grid;
+  gap: 1.5rem;
+  place-content: center;
+  padding: 0 2rem;
+
+  &__title {
+    color: hsl(0, 0%, 98%);
+    font-size: 2.5rem;
+    font-weight: 500;
+  }
+
+  &__button {
+    background-color: hsl(0, 0%, 98%);
+    color: $red;
+    font-weight: 700;
+    width: 35%;
+    margin: 0 auto;
+  }
+}
+
+.footer {
+  background-color: $blueDark;
+  text-align: center;
+  padding: 3rem 1.5rem;
+
+  &__form {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    align-items: start;
+  }
+
+  &__span {
+    text-align: start;
+    color: $red;
+    font-style: italic;
+    display: none;
+
+    &_visible {
+      display: block;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    border-radius: 1.875rem;
+    padding: 1rem;
+    font-family: 'Be Vietnam Pro';
+    font-weight: 500;
+    border: none;
+    margin-bottom: 1rem;
+
+    &_error {
+      border: 1px solid $red;
+      color: $red;
+    }
+  }
+
+  &__lists {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem 0;
+  }
+
+  &__item {
+    text-align: start;
+    line-height: 2rem;
+
+    a {
+      color: hsl(0, 0%, 98%);
+
+      &:hover {
+        color: $red;
+      }
+    }
+  }
+
+  &__brands {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+
+  &__brand {
+    transform: scale(1.5);
+  }
+
+  &__logo {
+    margin: 3rem;
+    filter: invert(1);
+  }
+
+  &__copyright {
+    color: $blueGray;
+  }
+}
+
+@media (min-width: 1000px) {
+
+  .header {
+
+    padding: 3rem 7rem;
+    align-items: center;
+
+    &__button {
+      display: block;
+    }
+  }
+
+  .main {
+    padding: 3rem 7rem;
+    display: flex;
+    align-items: center;
+    text-align: start;
+    justify-content: space-between;
+
+    &__image {
+      order: 2;
+      width: initial;
+    }
+
+    &__box {
+      max-width: 30rem;
+    }
+
+    &__subtitle {
+      padding: 2rem 0;
+    }
+  }
+
+  .feedback {
+
+    &__items {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+
+  .description {
+    padding: 3rem 7rem;
+    display: flex;
+    gap: 10rem;
+
+    &__left {
+      text-align: left;
+      max-width: 30rem;
+    }
+
+    &__subtitle {
+      padding-top: 2rem;
+    }
+
+    &__item {
+      display: grid;
+      grid-template-areas: "header header" "logo text";
+      grid-template-columns: 1fr 10fr;
+    }
+
+    &__header {
+      grid-area: header;
+      background-color: transparent;
+    }
+
+    &__button {
+      grid-area: logo;
+    }
+
+    &__text {
+      grid-area: text;
+    }
+  }
+
+  .simplify {
+
+    padding: 3rem 7rem;
+    display: flex;
+    height: auto;
+    align-items: center;
+    justify-content: space-between;
+
+    &__title {
+      max-width: 30rem;
+      text-align: start;
+    }
+
+    &__button {
+      margin: 0;
+      width: initial;
+    }
+  }
+
+
+}
+
+@media (min-width: 1200px) {
+  .footer {
+
+    padding: 3rem 7rem;
+    text-align: initial;
+
+    display: grid;
+    grid-template-areas: "logo center form" "brands center copyright";
+
+    &__logo {
+      grid-area: logo;
+      padding: 0;
+    }
+
+    &__lists {
+      grid-area: center;
+      padding: 0;
+    }
+
+    &__form {
+      grid-area: form;
+      justify-content: end;
+    }
+
+    &__brands {
+      grid-area: brands;
+      justify-content: start;
+    }
+
+    &__copyright {
+      grid-area: copyright;
+      text-align: right;
+      padding-top: 2rem;
+    }
+
+  }
+}

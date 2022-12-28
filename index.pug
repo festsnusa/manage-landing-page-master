@@ -1,0 +1,96 @@
+mixin list(arr, className)
+  ul(class=`${className}__list`)
+    each value in arr 
+      li(class=`${className}__item`)
+        a(href="#!" aria-label= value)= value
+
+mixin description(data)
+  -let i=1
+  each value in data
+    .description__item 
+      .description__header
+        .description__button.button= `0${i}`
+        p.description__caption= value["caption"]
+      p.description__text= value["text"]
+      -i++
+
+mixin feedback(data)
+  h1.feedback__title What they've said
+  .feedback__items
+    each value in data
+      .feedback__item
+        img.feedback__image(src= value["src"], alt= value["name"])
+        .feedback__content
+          p.feedback__name= value["name"]
+          p.feedback__text= value["text"]
+    .feedback__dots
+      each value in data
+        .feedback__dot
+      
+  button.feedback__button.button Get Started
+
+mixin brands(data)
+  ul.footer__brands 
+    each value in data
+      li.footer__brand 
+        a(href=`https://www.${value}.com` aria-label= value target="_blank") 
+          img(src= `./images/icon-${value}.svg`, alt= value)
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Manage landing page
+    link(rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png")
+    link(rel="stylesheet", href="./style.css")
+  body 
+    header.header
+      a(href="#" aria-label="home") 
+        img.header__logo(src= "./images/logo.svg" alt="logo")
+      img.header__burger(src= "./images/icon-hamburger.svg" alt="menu")
+      +list(["Pricing", "Product", "About Us", "Careers", "Community"], 'header')
+      button.header__button.button Get Started
+    main.main
+      img.main__image(src="./images/illustration-intro.svg", alt="intro")
+      .main__box 
+        h1.main__title Bring everyone together to build better products.
+        p.main__subtitle Manage makes it simple for software teams to plan day-to-day tasks while keeping the larger team goals in view.
+        label(for="get-started") 
+          button.main__button.button Get started  
+    section.description
+      .description__left
+        h1.description__title What’s different about Manage?
+        p.description__subtitle Manage provides all the functionality your team needs, without the complexity. Our software is tailor-made for modern digital product teams.
+      .description__right 
+        +description([
+          {"caption": "Track company-wide progress", "text": "See how your day-to-day tasks fit into the wider vision. Go from tracking progress at the milestone level all the way done to the smallest of details. Never lose sight of the bigger picture again."},
+          {"caption": "Advanced built-in reports", "text": "Set internal delivery estimates and track progress toward company goals. Our customisable dashboard helps you build out the reports you need to keep key stakeholders informed."},
+          {"caption": "Everything you need in one place", "text": "Stop jumping from one service to another to communicate, store files, track tasks and share documents. Manage offers an all-in-one team productivity solution."}
+        ])
+    section.feedback
+      +feedback([
+        {"src": "./images/avatar-anisha.png", "name": "Anisha Li", "text": "“Manage has supercharged our team’s workflow. The ability to maintain visibility on larger milestones at all times keeps everyone motivated.”"},
+        {"src": "./images/avatar-ali.png", "name": "Ali Bravo", "text": "“We have been able to cancel so many other subscriptions since using Manage. There is no more cross-channel confusion and everyone is much more focused.”"},
+        {"src": "./images/avatar-richard.png", "name": "Richard Watts", "text": "“Manage allows us to provide structure and process. It keeps us organized and focused. I can’t stop recommending them to everyone I talk to!”"},
+        {"src": "./images/avatar-shanai.png", "name": "Shanai Gough", "text": "“Their software allows us to track, manage and collaborate on our projects from anywhere. It keeps the whole team in-sync without being intrusive.”"}
+      ])
+    section.simplify
+      h1.simplify__title Simplify how your team works today.
+      button.simplify__button.button Get Started
+    footer.footer
+      .footer__form(action="#!") 
+        label(for="input-footer") 
+          input.footer__input(type="text" name="input-footer" placeholder="Updates in your inbox…")
+          span.footer__span Please insert a valid email
+
+        button.footer__button.button Go
+      .footer__lists
+        +list(["Home", "Pricing", "Products", "About Us"], 'footer')
+        +list(["Careers", "Community", "Privacy Policy"], 'footer')
+      +brands(["facebook", "youtube", "twitter", "pinterest", "instagram"])
+      a(href="#" aria-label="home") 
+        img.footer__logo(src="./images/logo.svg", alt="logo")
+      p.footer__copyright Copyright 2020. All Rights Reserved
+    script(src="./app.js")
